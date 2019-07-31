@@ -30,10 +30,15 @@ export default {
   name: 'App',
   created () {
     this.$store.dispatch('getJournal')
+    this.ghPagesSpaRedirect()
   },
   methods: {
     goHome () {
       this.$router.push('/')
+    },
+    ghPagesSpaRedirect () {
+      const { p } = this.$route.query
+      if (p) this.$router.push(p)
     }
   }
 }
