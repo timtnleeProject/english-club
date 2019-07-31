@@ -20,6 +20,21 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/Journal.vue')
+    },
+    {
+      path: '/journal/*',
+      name: 'article',
+      component: () => import('./views/Article.vue')
+    },
+    {
+      path: '/*',
+      name: 'default-not-found',
+      component: () => import('./views/404.vue')
+    },
+    {
+      path: '/not-found',
+      name: 'navigate-not-found',
+      component: () => import('./views/404.vue')
     }
   ]
 })

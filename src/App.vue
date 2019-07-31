@@ -18,13 +18,9 @@
       >
         <span class="mr-2">Class</span>
       </v-btn>
-
     </v-app-bar>
-
     <v-content>
-      <v-container>
-        <router-view />
-      </v-container>
+      <router-view />
     </v-content>
   </v-app>
 </template>
@@ -32,9 +28,9 @@
 <script>
 export default {
   name: 'App',
-  data: () => ({
-    //
-  }),
+  created () {
+    this.$store.dispatch('getJournal')
+  },
   methods: {
     goHome () {
       this.$router.push('/')

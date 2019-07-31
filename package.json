@@ -4,12 +4,16 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "generate": "node scripts/getMenu.js",
+    "build": "npm run generate && vue-cli-service build",
+    "deploy": "gh-pages -d dist",
+    "auto": "npm run build && npm run deploy",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^2.6.5",
     "vue": "^2.6.10",
+    "vue-markdown": "^2.2.4",
     "vue-router": "^3.0.3",
     "vuetify": "^2.0.0",
     "vuex": "^3.0.1"
@@ -20,8 +24,10 @@
     "@vue/cli-service": "^3.9.0",
     "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.1",
+    "babel-runtime": "^6.26.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "gh-pages": "^2.0.1",
     "lint-staged": "^8.1.5",
     "node-sass": "^4.9.0",
     "sass": "^1.17.4",

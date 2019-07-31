@@ -1,41 +1,41 @@
 <template>
-  <div>J</div>
+  <v-container>
+    <h1>Journal</h1>
+    <v-treeview
+      :items="journal"
+      :dense="true"
+      :open-on-click="true"
+    >
+      <template v-slot:label="{ item, open }">
+        <div v-if="item.children.length === 0" class="custom-pointer light-blue--text" @click="go(item.path)">
+          {{ item.name }}
+        </div>
+        <span v-else>
+          <v-icon>
+            {{ open ? 'mdi-folder-open' : 'mdi-folder' }}
+          </v-icon>
+          {{ item.name }}
+        </span>
+      </template>
+    </v-treeview>
+  </v-container>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   data () {
     return {
-
+      items: []
     }
   },
-  created () {
-    fetch('/menu.txt')
-      .then(res => res.text())
-      .then(raw => {
-        this.parseMenu(raw)
-      })
+  computed: {
+    ...mapState(['journal'])
   },
   methods: {
-    parseMenu (raw) {
-      const lines = raw.split('\n')
-      const flat = []
-      const tree = []
-
-      let pointerIndexes = [ 0 ]
-
-      const getDepth = n => n / 2
-
-      lines.forEach((line, index) => {
-        const whiteSpaces = line.match(/ /g) || []
-        const spaces = whiteSpaces.length
-        const lineDepth = getDepth(spaces)
-        if (lineDepth > pointerIndexes.length) pointerIndexes.push(0)
-        else if (lineDepth < pointerIndexes.length) pointerIndexes = pointerIndexes.slice(0, lineDepth)
-        if (pointerIndexes[lineDepth] === undefined) pointerIndexes[lineDepth] = 0
-        else pointerIndexes[lineDepth] += 1
-        console.log(lineDepth, pointerIndexes)
-      })
+    go (path) {
+      this.$router.push(`/journal${path}`)
     }
   }
 }
