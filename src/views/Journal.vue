@@ -7,7 +7,7 @@
       :open-on-click="true"
     >
       <template v-slot:label="{ item, open }">
-        <div v-if="item.children.length === 0" class="custom-pointer light-blue--text" @click="go(item.path)">
+        <div v-if="item.children.length === 0" class="custom-pointer blue--text" @click="go(item.path)">
           {{ item.name }}
         </div>
         <span v-else>
