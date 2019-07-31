@@ -16,4 +16,4 @@ images: `![](./<img_fullname>)`
 
 ex: `![](./image.jpg)`
 
-![](./balloonbridge.jpg)
+![](/journal-image/example/balloonbridge.jpg)

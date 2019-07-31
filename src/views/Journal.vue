@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     go (path) {
-      this.$router.push(`/journal${path}`)
+      this.$router.push({ name: 'article', params: { pathMatch: path } })
     }
   }
 }

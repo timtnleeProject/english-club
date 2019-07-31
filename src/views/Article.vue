@@ -3,15 +3,15 @@
     <v-progress-linear v-if="!loaded" indeterminate></v-progress-linear>
     <vue-markdown :source="rawMarkdown" class="custom-article"></vue-markdown>
     <div class="mb-5" v-if="sameLevelJournal.length > 0">
-      <h4 class="display-1">Other journal{{(sameLevelJournal.length > 1) ? 's' : ''}} in <span class="blue--text">{{fullPath}}</span>:</h4>
+      <h4 class="display-1">Other journal{{(sameLevelJournal.length > 1) ? 's' : ''}} in <span class="primary--text">{{fullPath}}</span>:</h4>
       <div
         v-for="jnl in sameLevelJournal"
         :key="jnl.name"
       >
-        <router-link class="title" :to="`/journal${jnl.path}`">{{ jnl.name }}</router-link>
+        <router-link class="title" :to="{ name: 'article', params: { pathMatch: jnl.path }}">{{ jnl.name }}</router-link>
       </div>
     </div>
-    <router-link class="title" to="/journal">Back to Journal</router-link>
+    <router-link class="title" :to="{ name: 'journals' }">Back to Journal</router-link>
   </v-container>
 </template>
 
@@ -45,10 +45,16 @@ export default {
       return this.pathes.join('/')
     },
     journalName () {
-      return this.$route.params.pathMatch.split('/').pop()
+      return this.$route.params.pathMatch
+        .split('/')
+        .filter(d => d.trim() !== '')
+        .pop()
     },
     pathes () {
-      return this.$route.params.pathMatch.split('/').slice(0, -1)
+      return this.$route.params.pathMatch
+        .split('/')
+        .filter(d => d.trim() !== '')
+        .slice(0, -1)
     },
     sameLevelJournal () {
       let pointer = this.journal

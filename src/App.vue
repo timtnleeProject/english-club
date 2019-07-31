@@ -8,7 +8,7 @@
       <v-spacer></v-spacer>
       <v-btn
         text
-        to="/journal"
+        :to="{ name: 'journals' }"
       >
         <span class="mr-2">Journal</span>
       </v-btn>
@@ -22,6 +22,9 @@
     <v-content>
       <router-view />
     </v-content>
+    <v-footer app>
+      Footer
+    </v-footer>
   </v-app>
 </template>
 
