@@ -1,6 +1,7 @@
 <template>
   <v-container>
-    <vue-markdown :source="rawMarkdown" class="custom-article">pending</vue-markdown>
+    <v-progress-linear v-if="!loaded" indeterminate></v-progress-linear>
+    <vue-markdown :source="rawMarkdown" class="custom-article"></vue-markdown>
     <div class="mb-5" v-if="sameLevelJournal.length > 0">
       <h4 class="display-1">Other journal{{(sameLevelJournal.length > 1) ? 's' : ''}} in <span class="blue--text">{{fullPath}}</span>:</h4>
       <div
@@ -24,6 +25,7 @@ export default {
   },
   data () {
     return {
+      loaded: false,
       rawMarkdown: ''
     }
   },
@@ -55,11 +57,14 @@ export default {
         if (!target) return []
         pointer = target.children
       }
-      return pointer.filter(d => d.name !== this.journalName)
+      return pointer
+        .filter(d => d.isFile)
+        .filter(d => d.name !== this.journalName)
     }
   },
   methods: {
     fetchArticle (path) {
+      this.loaded = false
       // get .md file
       return fetch(`${this.domain}/journal/${path}.md`)
         .then(res => {
@@ -71,6 +76,7 @@ export default {
         })
         .then(raw => {
           this.rawMarkdown = raw
+          this.loaded = true
         })
         .catch(e => {
           this.$router.push('/not-found')
