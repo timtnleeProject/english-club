@@ -1,8 +1,8 @@
 <template>
-  <v-container>
+  <v-container class="custom-md-container pb-7">
+    <div class="custom-article mb-9" v-html="rawHTML"></div>
     <v-progress-linear v-if="!loaded" indeterminate></v-progress-linear>
-    <vue-markdown :source="rawMarkdown" class="custom-article"></vue-markdown>
-    <div class="mb-5" v-if="sameLevelJournal.length > 0">
+    <div class="mb-9" v-if="sameLevelJournal.length > 0">
       <h4 class="display-1">Other journal{{(sameLevelJournal.length > 1) ? 's' : ''}} in <span class="primary--text">{{fullPath}}</span>:</h4>
       <div
         v-for="jnl in sameLevelJournal"
@@ -11,22 +11,18 @@
         <router-link class="title" :to="{ name: 'article', params: { pathMatch: jnl.path }}">{{ jnl.name }}</router-link>
       </div>
     </div>
-    <router-link class="title" :to="{ name: 'journals' }">Back to Journal</router-link>
+    <router-link class="title indigo--text" :to="{ name: 'journal' }">Back to Journal</router-link>
   </v-container>
 </template>
 
 <script>
-import VueMarkdown from 'vue-markdown'
 import { mapState } from 'vuex'
 
 export default {
-  components: {
-    VueMarkdown
-  },
   data () {
     return {
       loaded: false,
-      rawMarkdown: ''
+      rawHTML: ''
     }
   },
   created () {
@@ -72,16 +68,17 @@ export default {
     fetchArticle (path) {
       this.loaded = false
       // get .md file
-      return fetch(`${this.domain}/journal/${path}.md`)
+      const filetype = '.html'
+      return fetch(`${this.domain}/journal/${path + filetype}`)
         .then(res => {
           const contentType = res.headers.get('content-type')
-          const isMarkdown = /text\/markdown/.test(contentType)
-          return (isMarkdown)
+          const isHTML = /text\/html/.test(contentType)
+          return (isHTML)
             ? res.text()
             : Promise.reject(new Error('article not fount'))
         })
         .then(raw => {
-          this.rawMarkdown = raw
+          this.rawHTML = raw
           this.loaded = true
         })
         .catch(e => {

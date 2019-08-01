@@ -6,6 +6,8 @@ import vuetify from './plugins/vuetify'
 // Global css
 import '@/assets/style/custom.scss'
 import '@/assets/style/article.scss'
+// fetch polyfill
+import 'whatwg-fetch'
 
 Vue.config.productionTip = false
 

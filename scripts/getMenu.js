@@ -2,18 +2,19 @@ const fs = require('fs')
 const path = require('path')
 const journalPath = path.join(__dirname, '../public/journal')
 const menuFullPath = path.join(__dirname, '../public/menu.json')
+const targetRegex = /.html$/
 
 let id = 0
 const tree = []
 const read = (dir, dname, pointer) => {
   const dirs = fs.readdirSync(dir)
   dirs.forEach(fullname => {
-    const name = fullname.replace(/.md$/, '')
+    const name = fullname.replace(targetRegex, '')
     const fullPath = `${dname}/${name}`
     const subpath = path.join(dir, fullname)
     const isFile = fs.lstatSync(subpath).isFile()
     const isDir = !isFile
-    const notMdFile = !/.md$/.test(fullname)
+    const notMdFile = !targetRegex.test(fullname)
     const node = {
       id: ++id,
       name,

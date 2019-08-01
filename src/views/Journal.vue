@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="custom-md-container">
     <h1>Journal</h1>
     <v-treeview
       :items="journal"
