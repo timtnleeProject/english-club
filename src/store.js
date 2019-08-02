@@ -8,7 +8,8 @@ export default new Vuex.Store({
     domain: (process.env.NODE_ENV === 'production')
       ? 'https://timtnleeproject.github.io/english-club'
       : '',
-    journal: []
+    journal: [],
+    classList: []
   },
   mutations: {
     set (state, payload) {
@@ -18,11 +19,21 @@ export default new Vuex.Store({
   },
   actions: {
     getJournal (context) {
-      fetch(`${context.state.domain}/menu.json`)
+      fetch(`${context.state.domain}/journal.json`)
         .then(res => res.json())
         .then(tree => {
           context.commit('set', {
             name: 'journal',
+            value: tree
+          })
+        })
+    },
+    getClass (context) {
+      fetch(`${context.state.domain}/class.json`)
+        .then(res => res.json())
+        .then(tree => {
+          context.commit('set', {
+            name: 'classList',
             value: tree
           })
         })

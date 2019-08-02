@@ -1,9 +1,9 @@
 <template>
   <v-app>
-    <v-app-bar app class="cyan white--text">
+    <v-app-bar app class="pink white--text">
       <v-toolbar-title class="text-uppercase custom-pointer" @click="goHome">
         <span class="display-2">english</span>
-        <span class="font-weight-light">club</span>
+        <span class="font-weight-bold">club</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn
@@ -12,7 +12,7 @@
         :large="true"
         to="/class"
       >
-        <span class="mr-2">Class</span>
+        <span class="mr-2 font-italic">Class</span>
       </v-btn>
       <v-btn
         text
@@ -20,7 +20,7 @@
         :large="true"
         :to="{ name: 'journal' }"
       >
-        <span class="mr-2">Journal</span>
+        <span class="mr-2 font-italic">Journal</span>
       </v-btn>
       <v-btn
         text
@@ -28,7 +28,7 @@
         :large="true"
         to="/about"
       >
-        <span class="mr-2">About</span>
+        <span class="mr-2 font-italic">About</span>
       </v-btn>
     </v-app-bar>
     <v-content>
@@ -45,9 +45,9 @@
         width="100%"
         class="transparent text-center py-3"
       >
-        <v-card-text>Taipei MuCha Library English club</v-card-text>
+        <v-card-text class="deep-purple--text">臺北市立圖書館</v-card-text>
         <v-divider class="c-line"></v-divider>
-        <v-card-text>木柵英文讀書會</v-card-text>
+        <v-card-text class="deep-purple--text">木柵分館英文讀書會</v-card-text>
       </v-card>
     </v-footer>
   </v-app>
@@ -58,6 +58,7 @@ export default {
   name: 'App',
   created () {
     this.$store.dispatch('getJournal')
+    this.$store.dispatch('getClass')
     this.ghPagesSpaRedirect()
   },
   methods: {

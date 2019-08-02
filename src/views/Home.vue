@@ -13,7 +13,7 @@
         </div>
       </v-flex>
       <v-flex xs12 sm6 mb-7 style="white-space:nowrap">
-        <h3>Taipei MuCha Library English club</h3>
+        <h3>Taipei MuCha Library English Club</h3>
         <h3>木柵英文讀書會</h3>
         <h4 v-for="li in links" :key="li.name">
           <v-icon>mdi-menu-right</v-icon>

@@ -1,42 +1,20 @@
 <template>
   <v-container class="custom-md-container">
     <h1>Journal</h1>
-    <v-treeview
-      :items="journal"
-      :dense="true"
-      :open-on-click="true"
-    >
-      <template v-slot:label="{ item, open }">
-        <div v-if="item.children.length === 0" class="custom-pointer blue--text" @click="go(item.path)">
-          {{ item.name }}
-        </div>
-        <span v-else>
-          <v-icon>
-            {{ open ? 'mdi-folder-open' : 'mdi-folder' }}
-          </v-icon>
-          {{ item.name }}
-        </span>
-      </template>
-    </v-treeview>
+    <tree :tree="journal"></tree>
   </v-container>
 </template>
 
 <script>
+import Tree from '@/components/Tree.vue'
 import { mapState } from 'vuex'
 
 export default {
-  data () {
-    return {
-      items: []
-    }
+  components: {
+    Tree
   },
   computed: {
     ...mapState(['journal'])
-  },
-  methods: {
-    go (path) {
-      this.$router.push({ name: 'article', params: { pathMatch: path } })
-    }
   }
 }
 </script>

@@ -1,9 +1,20 @@
 <template>
-  <div>Class</div>
+  <v-container class="custom-md-container">
+    <h1>Class</h1>
+    <tree :tree="classList" to="class-content"></tree>
+  </v-container>
 </template>
 
 <script>
-export default {
+import Tree from '@/components/Tree.vue'
+import { mapState } from 'vuex'
 
+export default {
+  components: {
+    Tree
+  },
+  computed: {
+    ...mapState(['classList'])
+  }
 }
 </script>

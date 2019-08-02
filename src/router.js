@@ -35,8 +35,13 @@ export default new Router({
     },
     {
       path: '/class',
-      name: 'article',
+      name: 'class',
       component: () => import('./views/Class.vue')
+    },
+    {
+      path: '/class/*',
+      name: 'class-content',
+      component: () => import('./views/ClassContent.vue')
     },
     {
       path: '/about',

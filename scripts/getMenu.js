@@ -1,12 +1,12 @@
 const fs = require('fs')
 const path = require('path')
 const journalPath = path.join(__dirname, '../public/journal')
-const menuFullPath = path.join(__dirname, '../public/menu.json')
+const journalFullPath = path.join(__dirname, '../public/journal.json')
+const classPath = path.join(__dirname, '../public/class')
+const classFullPath = path.join(__dirname, '../public/class.json')
 const targetRegex = /.html$/
 
-let id = 0
-const tree = []
-const read = (dir, dname, pointer) => {
+const read = (dir, dname, pointer, id = 0) => {
   const dirs = fs.readdirSync(dir)
   dirs.forEach(fullname => {
     const name = fullname.replace(targetRegex, '')
@@ -24,12 +24,18 @@ const read = (dir, dname, pointer) => {
       children: []
     }
     if (isFile && notMdFile) return // 圖片或其他檔案
-    else if (isDir) read(subpath, fullPath, node.children)
+    else if (isDir) read(subpath, fullPath, node.children, id)
     pointer.push(node)
   })
 }
-read(journalPath, '', tree)
 
-fs.writeFileSync(menuFullPath, JSON.stringify(tree), 'utf-8')
+const getTreeJson = (sourcePath, resultPath) => {
+  const tree = []
+  read(sourcePath, '', tree)
+  fs.writeFileSync(resultPath, JSON.stringify(tree), 'utf-8')
+}
+
+getTreeJson(journalPath, journalFullPath)
+getTreeJson(classPath, classFullPath)
 
 console.log('Generate menu hierarchy')
