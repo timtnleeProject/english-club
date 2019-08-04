@@ -1,5 +1,5 @@
 <template>
-  <v-container class="custom-md-container">
+  <v-container class="custom-lg-container">
     <v-layout wrap>
       <v-flex xs12 sm6 mb-7>
         <div class="c-headings">
@@ -12,7 +12,7 @@
           </div>
         </div>
       </v-flex>
-      <v-flex xs12 sm6 mb-7 style="white-space:nowrap">
+      <v-flex xs12 sm6 mb-7>
         <h3>Taipei MuCha Library English Club</h3>
         <h3>木柵英文讀書會</h3>
         <h4 v-for="li in links" :key="li.name">
@@ -50,6 +50,7 @@ export default {
 <style lang="scss" scoped>
 .c-headings {
   font-size: 1.5rem;
+  font-weight: bold;
   text-shadow: 1px 1px 1px black;
   .c-title {
     display: inline-block;

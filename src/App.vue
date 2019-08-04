@@ -1,35 +1,66 @@
 <template>
   <v-app>
+    <v-navigation-drawer
+      app
+      :disable-resize-watcher="true"
+      :mobile-break-point="9999"
+      v-model="open"
+    >
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="title">
+            English Club
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list
+        nav
+      >
+        <v-list-item>
+          <v-list-item-content>
+            <v-list-item to="/class">Class</v-list-item>
+            <v-list-item to="/journal">Journal</v-list-item>
+            <v-list-item to="/about">About</v-list-item>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
     <v-app-bar app class="pink white--text">
       <v-toolbar-title class="text-uppercase custom-pointer" @click="goHome">
         <span class="display-2">english</span>
         <span class="font-weight-bold">club</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn
-        text
-        color="white"
-        :large="true"
-        to="/class"
-      >
-        <span class="mr-2 font-italic">Class</span>
-      </v-btn>
-      <v-btn
-        text
-        color="white"
-        :large="true"
-        :to="{ name: 'journal' }"
-      >
-        <span class="mr-2 font-italic">Journal</span>
-      </v-btn>
-      <v-btn
-        text
-        color="white"
-        :large="true"
-        to="/about"
-      >
-        <span class="mr-2 font-italic">About</span>
-      </v-btn>
+      <span v-if="$vuetify.breakpoint.mdAndUp">
+        <v-btn
+          text
+          color="white"
+          :large="true"
+          to="/class"
+        >
+          <span class="mr-2 font-italic">Class</span>
+        </v-btn>
+        <v-btn
+          text
+          color="white"
+          :large="true"
+          :to="{ name: 'journal' }"
+        >
+          <span class="mr-2 font-italic">Journal</span>
+        </v-btn>
+        <v-btn
+          text
+          color="white"
+          :large="true"
+          to="/about"
+        >
+          <span class="mr-2 font-italic">About</span>
+        </v-btn>
+      </span>
+      <v-app-bar-nav-icon v-else class="white--text" @click="open = true"></v-app-bar-nav-icon>
     </v-app-bar>
     <v-content>
       <div class="c-fullbg"></div>
@@ -45,9 +76,9 @@
         width="100%"
         class="transparent text-center py-3"
       >
-        <v-card-text class="deep-purple--text">臺北市立圖書館</v-card-text>
+        <v-card-text class="deep-purple--text">臺北市立圖書館木柵分館</v-card-text>
         <v-divider class="c-line"></v-divider>
-        <v-card-text class="deep-purple--text">木柵分館英文讀書會</v-card-text>
+        <v-card-text class="deep-purple--text">英文讀書會</v-card-text>
       </v-card>
     </v-footer>
   </v-app>
@@ -56,6 +87,11 @@
 <script>
 export default {
   name: 'App',
+  data () {
+    return {
+      open: false
+    }
+  },
   created () {
     this.$store.dispatch('getJournal')
     this.$store.dispatch('getClass')

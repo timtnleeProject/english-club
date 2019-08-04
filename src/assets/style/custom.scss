@@ -4,6 +4,14 @@
 .custom-md-container {
   max-width: 750px;
 }
+.custom-lg-container {
+  max-width: 910px;
+}
 .custom-pointer {
   cursor: pointer;
+}
+
+// 複寫 vuetify
+.v-content__wrap {
+  max-width: none;
 }
