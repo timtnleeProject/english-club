@@ -2,10 +2,19 @@
   <v-container class="custom-md-container pb-7">
     <div class="custom-article mb-9" v-html="rawHTML"></div>
     <v-progress-linear v-if="!loaded" indeterminate></v-progress-linear>
-    <div class="mb-9">
-      <router-link class="deep-purple--text" :to="{ name: 'journal' }">Back to Journal</router-link>
-      <router-link class="c-float deep-purple--text" v-if="nextJournal" :to="{ name: 'article', params: { pathMatch: nextJournal.path }}">{{ nextJournal.name }}</router-link>
-    </div>
+    <v-layout class="mb-9" wrap>
+      <v-flex xs12 sm6>
+        <router-link class="deep-purple--text" :to="{ name: 'journal' }">Back to Journal</router-link>
+      </v-flex>
+      <v-flex v-if="nextJournal" xs12 sm6>
+        <router-link
+          class="deep-purple--text"
+          :to="{ name: 'article', params: { pathMatch: nextJournal.path }}"
+        >
+          {{ nextJournal.name }}
+        </router-link>
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 
@@ -85,9 +94,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.c-float {
-  float: right;
-}
-</style>
