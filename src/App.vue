@@ -113,11 +113,9 @@ export default {
 $bg_interval: 15s;
 @mixin bg1 () {
   background-image: url(~@/assets/images/background.jpg);
-  background-position: 45.64% 44.64%;
 }
 @mixin bg2 () {
   background-image: url(~@/assets/images/birdshome.jpg);
-  background-position: 61.64% 28.28%;
 }
 .c-fullbg {
   position: absolute;
@@ -125,6 +123,7 @@ $bg_interval: 15s;
   height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: 45.64% 44.64%;
   opacity: 0.2;
   animation: bgChange $bg_interval*2 infinite forwards;
 }
