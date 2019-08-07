@@ -9,7 +9,9 @@ export default new Vuex.Store({
       ? 'https://timtnleeproject.github.io/english-club'
       : '',
     journal: [],
-    classList: []
+    journalControl: [],
+    classList: [],
+    classControl: []
   },
   mutations: {
     set (state, payload) {

@@ -21,7 +21,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/journal',
+      path: '/journals',
       name: 'journal',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
@@ -29,17 +29,17 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/Journal.vue')
     },
     {
-      path: '/journal/*',
+      path: '/journals/*',
       name: 'article',
       component: () => import('./views/Article.vue')
     },
     {
-      path: '/class',
+      path: '/classes',
       name: 'class',
       component: () => import('./views/Class.vue')
     },
     {
-      path: '/class/*',
+      path: '/classes/*',
       name: 'class-content',
       component: () => import('./views/ClassContent.vue')
     },

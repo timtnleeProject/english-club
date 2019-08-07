@@ -1,7 +1,7 @@
 <template>
   <v-container class="custom-md-container">
     <h1>Journal</h1>
-    <tree :tree="journal"></tree>
+    <tree :tree="journal" historyStoreName="journalControl"></tree>
   </v-container>
 </template>
 

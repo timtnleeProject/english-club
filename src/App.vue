@@ -21,8 +21,8 @@
       >
         <v-list-item>
           <v-list-item-content>
-            <v-list-item to="/class">Class</v-list-item>
-            <v-list-item to="/journal">Journal</v-list-item>
+            <v-list-item :to="{ name: 'class' }">Class</v-list-item>
+            <v-list-item :to="{ name: 'journal' }">Journal</v-list-item>
             <v-list-item to="/about">About</v-list-item>
           </v-list-item-content>
         </v-list-item>
@@ -39,7 +39,7 @@
           text
           color="white"
           :large="true"
-          to="/class"
+          :to="{ name: 'class' }"
         >
           <span class="mr-2 font-italic">Class</span>
         </v-btn>
@@ -110,15 +110,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$bg_interval: 30s;
+@mixin bg1 () {
+  background-image: url(~@/assets/images/background.jpg);
+  background-position: 45.64% 44.64%;
+}
+@mixin bg2 () {
+  background-image: url(~@/assets/images/birdshome.jpg);
+  background-position: 61.64% 28.28%;
+}
 .c-fullbg {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: url(~@/assets/images/background.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  filter: blur(3px);
   opacity: 0.2;
+  animation: bgChange $bg_interval infinite forwards;
+}
+
+@keyframes bgChange {
+  0%, 40% {
+    @include bg1();
+  }
+  50%, 90% {
+    @include bg2();
+  }
+  100% {
+    @include bg1();
+  }
 }
 
 .c-elevate {
