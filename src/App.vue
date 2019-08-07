@@ -110,35 +110,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$bg_interval: 15s;
-@mixin bg1 () {
-  background-image: url(~@/assets/images/background.jpg);
-}
-@mixin bg2 () {
-  background-image: url(~@/assets/images/birdshome.jpg);
-}
+//$bg_interval: 15s;
+// @mixin bg1 () {
+//   background-image: url(~@/assets/images/background.jpg);
+// }
+// @mixin bg2 () {
+//   background-image: url(~@/assets/images/birdshome.jpg);
+// }
 .c-fullbg {
   position: absolute;
   width: 100%;
   height: 100%;
+  background-image: url(~@/assets/images/background.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 45.64% 44.64%;
   opacity: 0.2;
-  animation: bgChange $bg_interval*2 infinite forwards;
+  //animation: bgChange $bg_interval*2 infinite forwards;
 }
 
-@keyframes bgChange {
-  0%, 40% {
-    @include bg1();
-  }
-  50%, 90% {
-    @include bg2();
-  }
-  100% {
-    @include bg1();
-  }
-}
+// @keyframes bgChange {
+//   0%, 40% {
+//     @include bg1();
+//   }
+//   50%, 90% {
+//     @include bg2();
+//   }
+//   100% {
+//     @include bg1();
+//   }
+// }
 
 .c-elevate {
   position: relative;
