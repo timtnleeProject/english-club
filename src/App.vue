@@ -110,7 +110,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$bg_interval: 30s;
+$bg_interval: 15s;
 @mixin bg1 () {
   background-image: url(~@/assets/images/background.jpg);
   background-position: 45.64% 44.64%;
@@ -126,7 +126,7 @@ $bg_interval: 30s;
   background-repeat: no-repeat;
   background-size: cover;
   opacity: 0.2;
-  animation: bgChange $bg_interval infinite forwards;
+  animation: bgChange $bg_interval*2 infinite forwards;
 }
 
 @keyframes bgChange {
