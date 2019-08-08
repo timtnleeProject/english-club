@@ -1,5 +1,6 @@
 <template>
   <div>
+    <v-progress-linear v-if="tree.length === 0" indeterminate></v-progress-linear>
     <v-treeview
       :items="tree"
       :dense="true"
