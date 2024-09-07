@@ -7,6 +7,7 @@
       :open-on-click="true"
       :open="open"
       v-on:update:open="saveOpenStore($event)"
+      class="tree-container"
     >
       <template v-slot:label="{ item, open }">
         <div v-if="item.children.length === 0" class="custom-pointer indigo--text" @click="go(item.path)">
@@ -58,3 +59,16 @@ export default {
   }
 }
 </script>
+
+<style>
+@media (min-width: 1280px) {
+  .tree-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+}
+.tree-container > div {
+  max-width: 100%;
+  overflow: hidden;
+}
+</style>

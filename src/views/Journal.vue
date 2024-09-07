@@ -1,7 +1,7 @@
 <template>
   <v-container class="custom-md-container">
     <h1>Journal</h1>
-    <tree :tree="journal" historyStoreName="journalControl"></tree>
+    <tree :tree="sortedJournal" historyStoreName="journalControl"></tree>
   </v-container>
 </template>
 
@@ -14,7 +14,14 @@ export default {
     Tree
   },
   computed: {
-    ...mapState(['journal'])
+    ...mapState(['journal']),
+    sortedJournal () {
+      return this.journal.slice().sort((a, b) => {
+        if (a.name < b.name) return 1
+        if (a.name > b.name) return -1
+        return 0
+      })
+    }
   }
 }
 </script>

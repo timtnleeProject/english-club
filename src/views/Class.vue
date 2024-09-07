@@ -1,7 +1,7 @@
 <template>
   <v-container class="custom-md-container">
     <h1>Class</h1>
-    <tree :tree="classList" to="class-content" historyStoreName="classControl"></tree>
+    <tree :tree="sortedClass" to="class-content" historyStoreName="classControl"></tree>
   </v-container>
 </template>
 
@@ -14,7 +14,23 @@ export default {
     Tree
   },
   computed: {
-    ...mapState(['classList'])
+    ...mapState(['classList']),
+    sortedClass () {
+      return this.classList.slice().sort((a, b) => {
+        if (a.name < b.name) return 1
+        if (a.name > b.name) return -1
+        return 0
+      }).map(c => {
+        return {
+          ...c,
+          children: c.children.sort((a, b) => {
+            if (a.name < b.name) return 1
+            if (a.name > b.name) return -1
+            return 0
+          })
+        }
+      })
+    }
   }
 }
 </script>
